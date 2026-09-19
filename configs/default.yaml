@@ -1,0 +1,55 @@
+# Single source of truth for every make target. Paths are relative to repo root.
+seed: 42
+
+paths:
+  raw: data/raw
+  interim: data/interim
+  results: results
+  site_data: site/data
+  site_img: site/img
+
+kaggle:
+  # the original competition page was removed from Kaggle; this dataset mirror has the same six files
+  dataset: psparks/instacart-market-basket-analysis
+  files:
+    - orders.csv
+    - order_products__prior.csv
+    - order_products__train.csv
+    - products.csv
+    - aisles.csv
+    - departments.csv
+
+data:
+  exclude_departments: ["missing", "other"]
+  # users sampled (by user_id, seeded) for feature building / training. null = all users.
+  sample_users: 25000
+  # lift / transition matrices are computed on ALL orders (cheap and more stable)
+  aisle_min_support: 2000        # min orders containing an aisle pair to keep its lift
+  top_aisles_per_department: 10  # shown on shelves, the rest under "more"
+  top_products_per_aisle: 8
+
+split:
+  # per-user chronological split: last n_test orders -> test, previous n_val -> val, rest -> train
+  n_val: 1
+  n_test: 1
+  min_orders_per_user: 4
+
+task:
+  # prefix of the first k added items -> next department not yet in the basket
+  max_prefix: 8
+  prefix_buckets: [[1, 1], [2, 3], [4, 99]]
+
+model:
+  iterations: 2000
+  learning_rate: 0.1
+  depth: 6
+  early_stopping_rounds: 50
+  max_train_examples: 1000000   # random subsample of train examples fed to CatBoost (speed)
+  compare_yetirank: true        # also fit a YetiRank ranker on a subsample and report it side by side
+  yetirank_train_examples: 60000
+
+export:
+  n_profiles: 5             # KMeans clusters over user department shares -> "shopper profiles"
+  icon_size: 120
+  # departments people visit on purpose; the demo never suggests them as "next", they stay reachable
+  no_recommend: ["pets"]

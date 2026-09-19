@@ -1,0 +1,22 @@
+# data: raw Instacart files are never committed
+/data/
+*.csv
+*.zip
+# secrets
+kaggle.json
+access_token
+.env
+# python
+.venv/
+__pycache__/
+*.pyc
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+catboost_info/
+# heavy model binary (JSON export for the site is kept)
+results/*.cbm
+# os
+Thumbs.db
+.DS_Store

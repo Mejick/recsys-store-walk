@@ -1,0 +1,7 @@
+* text=auto eol=lf
+*.webp binary
+*.png binary
+prototype/** linguist-vendored
+site/data/** linguist-generated
+results/** linguist-generated
+uv.lock linguist-generated
