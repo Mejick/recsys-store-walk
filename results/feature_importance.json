@@ -1,354 +1,354 @@
 [
  {
-  "feature": "b_14",
-  "importance": 5.178
- },
- {
-  "feature": "e_14",
-  "importance": 4.9167
- },
- {
-  "feature": "e_5",
-  "importance": 4.9066
- },
- {
   "feature": "e_2",
-  "importance": 4.7884
+  "importance": 6.3197
+ },
+ {
+  "feature": "b_14",
+  "importance": 5.9923
  },
  {
   "feature": "b_2",
-  "importance": 4.3483
+  "importance": 4.3906
+ },
+ {
+  "feature": "e_5",
+  "importance": 4.3669
+ },
+ {
+  "feature": "e_14",
+  "importance": 4.1558
  },
  {
   "feature": "u_reorder_rate",
-  "importance": 3.8866
+  "importance": 4.0059
  },
  {
   "feature": "e_17",
-  "importance": 3.6593
+  "importance": 3.1668
  },
  {
   "feature": "e_0",
-  "importance": 3.1637
+  "importance": 3.006
  },
  {
   "feature": "e_1",
-  "importance": 2.9388
+  "importance": 2.7612
  },
  {
   "feature": "e_18",
-  "importance": 2.3049
- },
- {
-  "feature": "e_10",
-  "importance": 2.2784
- },
- {
-  "feature": "e_11",
-  "importance": 2.0191
- },
- {
-  "feature": "e_13",
-  "importance": 1.9261
+  "importance": 2.354
  },
  {
   "feature": "last_aisle",
-  "importance": 1.8966
+  "importance": 2.3137
  },
  {
-  "feature": "s_14",
-  "importance": 1.8965
- },
- {
-  "feature": "e_7",
-  "importance": 1.8216
- },
- {
-  "feature": "e_16",
-  "importance": 1.7943
- },
- {
-  "feature": "e_12",
-  "importance": 1.7849
- },
- {
-  "feature": "e_15",
-  "importance": 1.7145
- },
- {
-  "feature": "s_15",
-  "importance": 1.6954
- },
- {
-  "feature": "s_5",
-  "importance": 1.6744
+  "feature": "e_10",
+  "importance": 2.2589
  },
  {
   "feature": "s_2",
-  "importance": 1.6309
+  "importance": 2.0687
  },
  {
-  "feature": "s_3",
-  "importance": 1.5835
+  "feature": "e_11",
+  "importance": 2.0587
  },
  {
-  "feature": "s_1",
-  "importance": 1.5009
+  "feature": "s_14",
+  "importance": 1.9815
  },
  {
-  "feature": "s_13",
-  "importance": 1.4577
+  "feature": "e_16",
+  "importance": 1.8769
  },
  {
-  "feature": "s_0",
-  "importance": 1.4533
+  "feature": "s_15",
+  "importance": 1.8234
  },
  {
-  "feature": "s_17",
-  "importance": 1.4267
+  "feature": "e_12",
+  "importance": 1.7446
  },
  {
-  "feature": "s_18",
-  "importance": 1.4173
- },
- {
-  "feature": "s_12",
-  "importance": 1.4075
- },
- {
-  "feature": "s_9",
-  "importance": 1.298
- },
- {
-  "feature": "s_7",
-  "importance": 1.2625
+  "feature": "e_13",
+  "importance": 1.717
  },
  {
   "feature": "s_6",
-  "importance": 1.2502
+  "importance": 1.6286
  },
  {
-  "feature": "days_since_prior_order",
-  "importance": 1.2268
+  "feature": "s_3",
+  "importance": 1.598
  },
  {
-  "feature": "s_16",
-  "importance": 1.2145
+  "feature": "s_5",
+  "importance": 1.5764
  },
  {
-  "feature": "s_11",
-  "importance": 1.2018
+  "feature": "s_0",
+  "importance": 1.5252
+ },
+ {
+  "feature": "e_7",
+  "importance": 1.4901
+ },
+ {
+  "feature": "s_17",
+  "importance": 1.4648
  },
  {
   "feature": "s_8",
-  "importance": 1.1411
- },
- {
-  "feature": "s_10",
-  "importance": 1.1228
- },
- {
-  "feature": "e_6",
-  "importance": 1.114
- },
- {
-  "feature": "s_4",
-  "importance": 0.9992
- },
- {
-  "feature": "e_9",
-  "importance": 0.968
- },
- {
-  "feature": "e_8",
-  "importance": 0.9595
- },
- {
-  "feature": "order_hour_of_day",
-  "importance": 0.9499
- },
- {
-  "feature": "e_4",
-  "importance": 0.9239
- },
- {
-  "feature": "b_17",
-  "importance": 0.9086
- },
- {
-  "feature": "e_3",
-  "importance": 0.89
- },
- {
-  "feature": "b_11",
-  "importance": 0.8303
- },
- {
-  "feature": "u_n_orders",
-  "importance": 0.8139
- },
- {
-  "feature": "order_number",
-  "importance": 0.8106
- },
- {
-  "feature": "b_5",
-  "importance": 0.7255
- },
- {
-  "feature": "order_dow",
-  "importance": 0.6731
- },
- {
-  "feature": "b_0",
-  "importance": 0.6544
- },
- {
-  "feature": "u_avg_basket",
-  "importance": 0.6496
+  "importance": 1.4509
  },
  {
   "feature": "first_dept",
-  "importance": 0.6438
+  "importance": 1.4155
  },
  {
-  "feature": "k",
-  "importance": 0.6159
+  "feature": "e_15",
+  "importance": 1.3751
+ },
+ {
+  "feature": "s_13",
+  "importance": 1.3311
+ },
+ {
+  "feature": "s_16",
+  "importance": 1.3284
+ },
+ {
+  "feature": "b_17",
+  "importance": 1.3078
+ },
+ {
+  "feature": "s_9",
+  "importance": 1.2634
+ },
+ {
+  "feature": "s_18",
+  "importance": 1.2453
+ },
+ {
+  "feature": "s_12",
+  "importance": 1.22
+ },
+ {
+  "feature": "days_since_prior_order",
+  "importance": 1.2132
+ },
+ {
+  "feature": "s_7",
+  "importance": 1.2101
+ },
+ {
+  "feature": "s_1",
+  "importance": 1.1993
+ },
+ {
+  "feature": "s_10",
+  "importance": 1.1664
+ },
+ {
+  "feature": "s_11",
+  "importance": 1.1161
+ },
+ {
+  "feature": "e_9",
+  "importance": 1.0421
+ },
+ {
+  "feature": "s_4",
+  "importance": 1.0162
+ },
+ {
+  "feature": "b_5",
+  "importance": 0.9937
+ },
+ {
+  "feature": "order_hour_of_day",
+  "importance": 0.9193
+ },
+ {
+  "feature": "e_4",
+  "importance": 0.9145
+ },
+ {
+  "feature": "b_11",
+  "importance": 0.7694
+ },
+ {
+  "feature": "u_n_orders",
+  "importance": 0.7578
+ },
+ {
+  "feature": "e_6",
+  "importance": 0.7438
+ },
+ {
+  "feature": "e_8",
+  "importance": 0.7217
+ },
+ {
+  "feature": "order_dow",
+  "importance": 0.7122
+ },
+ {
+  "feature": "b_0",
+  "importance": 0.6463
+ },
+ {
+  "feature": "e_3",
+  "importance": 0.6181
  },
  {
   "feature": "u_days_mean",
-  "importance": 0.5836
+  "importance": 0.5306
+ },
+ {
+  "feature": "order_number",
+  "importance": 0.5248
+ },
+ {
+  "feature": "u_avg_basket",
+  "importance": 0.481
+ },
+ {
+  "feature": "k",
+  "importance": 0.4242
  },
  {
   "feature": "n_dep_basket",
-  "importance": 0.3585
- },
- {
-  "feature": "b_1",
-  "importance": 0.3116
+  "importance": 0.3545
  },
  {
   "feature": "b_18",
-  "importance": 0.3111
+  "importance": 0.3091
  },
  {
   "feature": "b_13",
-  "importance": 0.2967
+  "importance": 0.2965
+ },
+ {
+  "feature": "b_1",
+  "importance": 0.2904
  },
  {
   "feature": "b_15",
-  "importance": 0.2008
- },
- {
-  "feature": "m_14",
-  "importance": 0.1623
+  "importance": 0.2895
  },
  {
   "feature": "b_7",
-  "importance": 0.1534
- },
- {
-  "feature": "m_5",
-  "importance": 0.1369
- },
- {
-  "feature": "b_10",
-  "importance": 0.1291
- },
- {
-  "feature": "b_9",
-  "importance": 0.1158
- },
- {
-  "feature": "m_9",
-  "importance": 0.1033
+  "importance": 0.2462
  },
  {
   "feature": "b_12",
-  "importance": 0.0793
+  "importance": 0.1525
  },
  {
-  "feature": "m_18",
-  "importance": 0.0786
+  "feature": "b_10",
+  "importance": 0.1191
  },
  {
-  "feature": "m_12",
-  "importance": 0.0782
- },
- {
-  "feature": "m_11",
-  "importance": 0.064
- },
- {
-  "feature": "m_13",
-  "importance": 0.0633
- },
- {
-  "feature": "m_1",
-  "importance": 0.0591
- },
- {
-  "feature": "b_3",
-  "importance": 0.0475
- },
- {
-  "feature": "m_4",
-  "importance": 0.0439
- },
- {
-  "feature": "m_3",
-  "importance": 0.0399
- },
- {
-  "feature": "m_15",
-  "importance": 0.038
- },
- {
-  "feature": "m_6",
-  "importance": 0.0329
- },
- {
-  "feature": "m_0",
-  "importance": 0.0258
- },
- {
-  "feature": "b_16",
-  "importance": 0.0235
- },
- {
-  "feature": "m_7",
-  "importance": 0.0232
- },
- {
-  "feature": "b_6",
-  "importance": 0.0215
+  "feature": "b_9",
+  "importance": 0.1115
  },
  {
   "feature": "b_4",
-  "importance": 0.0189
- },
- {
-  "feature": "m_8",
-  "importance": 0.0186
- },
- {
-  "feature": "m_17",
-  "importance": 0.0182
- },
- {
-  "feature": "m_2",
-  "importance": 0.0166
- },
- {
-  "feature": "m_10",
-  "importance": 0.0157
+  "importance": 0.0572
  },
  {
   "feature": "m_16",
-  "importance": 0.0087
+  "importance": 0.0533
+ },
+ {
+  "feature": "m_1",
+  "importance": 0.0427
+ },
+ {
+  "feature": "b_3",
+  "importance": 0.0368
+ },
+ {
+  "feature": "m_5",
+  "importance": 0.0363
+ },
+ {
+  "feature": "b_16",
+  "importance": 0.0342
+ },
+ {
+  "feature": "m_9",
+  "importance": 0.0327
+ },
+ {
+  "feature": "m_4",
+  "importance": 0.029
+ },
+ {
+  "feature": "b_6",
+  "importance": 0.0268
+ },
+ {
+  "feature": "m_12",
+  "importance": 0.0263
+ },
+ {
+  "feature": "m_13",
+  "importance": 0.0262
+ },
+ {
+  "feature": "m_3",
+  "importance": 0.0224
+ },
+ {
+  "feature": "m_6",
+  "importance": 0.0217
+ },
+ {
+  "feature": "m_18",
+  "importance": 0.0138
+ },
+ {
+  "feature": "m_11",
+  "importance": 0.013
+ },
+ {
+  "feature": "m_10",
+  "importance": 0.0125
+ },
+ {
+  "feature": "m_2",
+  "importance": 0.0121
+ },
+ {
+  "feature": "m_15",
+  "importance": 0.0051
+ },
+ {
+  "feature": "m_0",
+  "importance": 0.0049
+ },
+ {
+  "feature": "m_7",
+  "importance": 0.0048
+ },
+ {
+  "feature": "m_14",
+  "importance": 0.0047
+ },
+ {
+  "feature": "m_8",
+  "importance": 0.0042
  },
  {
   "feature": "b_8",
+  "importance": 0.0032
+ },
+ {
+  "feature": "m_17",
   "importance": 0.003
  },
  {

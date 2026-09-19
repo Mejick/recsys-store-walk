@@ -4,16 +4,16 @@
   "val": 129239,
   "test": 130158
  },
- "n_train_used": 400000,
+ "n_train_used": 1000000,
  "n_features": 89,
  "multiclass": {
-  "best_iteration": 984,
-  "fit_seconds": 1373
+  "best_iteration": 1398,
+  "fit_seconds": 4696
  },
  "yetirank": {
-  "best_iteration": 32,
+  "best_iteration": 22,
   "n_train_examples": 60000,
-  "fit_seconds": 63
+  "fit_seconds": 55
  },
  "val_summary": {
   "popularity": {
@@ -40,18 +40,24 @@
    "mrr": 0.39091870219789066,
    "n": 129239
   },
+  "heuristic_v2": {
+   "hit@1": 0.24463977591903374,
+   "hit@3": 0.5343046603579414,
+   "mrr": 0.44521756200439855,
+   "n": 129239
+  },
   "catboost_multiclass": {
-   "hit@1": 0.31368240237080136,
-   "hit@3": 0.6206640410402433,
-   "mrr": 0.5117885147360635,
+   "hit@1": 0.31640603842493364,
+   "hit@3": 0.6223508383692229,
+   "mrr": 0.5138967598290909,
    "n": 129239
   },
   "catboost_yetirank": {
-   "hit@1": 0.2568110245359373,
-   "hit@3": 0.5233559529244268,
-   "mrr": 0.44762986188631465,
+   "hit@1": 0.25766989840528015,
+   "hit@3": 0.5243618412398734,
+   "mrr": 0.4484402538497483,
    "n": 129239
   }
  },
- "total_seconds": 1444
+ "total_seconds": 4765
 }
