@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Магазин-бродилка</title>
+<meta name="description" content="Куда идти дальше по магазину: прогноз следующего отдела по корзине и истории покупок на данных Instacart">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<link rel="icon" href="img/broccoli.webp" type="image/webp">
+<script>try{var t=localStorage.getItem("brodilka-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Магазин-бродилка</h1>
+    <div class="hbtns">
+      <button class="iconbtn" id="themeBtn" type="button" aria-label="Переключить тему" title="Тема">◐</button>
+      <button class="cartbtn" id="cartBtn" type="button">Корзина<b id="cartN">0</b></button>
+    </div>
+  </header>
+  <div class="profile">
+    <label for="profileSel">Профиль покупателя</label>
+    <select id="profileSel"></select>
+    <p class="pnote" id="profileNote"></p>
+  </div>
+  <main class="room" id="room" aria-live="polite"></main>
+  <div class="maphead"><h3>Куда дальше</h3><button class="link" type="button" data-all>Все отделы</button></div>
+  <nav class="map" id="map" aria-label="Персональная карта"></nav>
+  <details>
+    <summary>Как это считается</summary>
+    <div id="howto"></div>
+    <h4>Lift между отделами: во сколько раз чаще случайного два отдела встречаются в одном заказе</h4>
+    <div class="scroll" id="liftTable"></div>
+    <h4>Куда идут после: доля случаев, когда следующим новым отделом в корзине стал этот</h4>
+    <div class="scroll" id="transTable"></div>
+  </details>
+  <p class="credit" id="credit"></p>
+</div>
+<div class="sheet" id="sheet"><div id="sheetIn"></div></div>
+<script src="app.js"></script>
+</body>
+</html>
