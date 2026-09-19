@@ -1,13 +1,12 @@
 /* Магазин-бродилка: демо на реальных агрегатах Instacart.
-   Скоринг в браузере = эвристика прототипа (ranked) на таблицах из site/data,
-   тех же, что лежат в results/ репозитория. */
+   Формула для стрелки и карты та же, что вариант 4c в results/metrics.md:
+   ln P(L | L ещё нет в корзине) + Σ по отделам корзины (доля × ln lift корзины) + 0,5·ln lift перехода
+   от текущего отдела + 5·доля прошлых заказов с отделом L. Таблицы лежат в site/data и совпадают с results/. */
 (function () {
   "use strict";
   var $ = function (id) { return document.getElementById(id); };
-  /* ROOM_TERM: "lift" = формула прототипа (симметричный lift к текущему отделу),
-     "directed" = вариант 4b из metrics.md (направленный lift по переходам add_to_cart_order). */
-  var ROOM_TERM = "lift";
-  var KEYS = [], DEP = {}, LIFT = {}, DLIFT = {}, TRANS = {}, PROFILES = [], GROUPS = [], ITEM = {}, META = {};
+  var W_BASKET = 1, W_ROOM = 0.5, W_HIST = 5;
+  var KEYS = [], DEP = {}, LIFT = {}, BLIFT = {}, MLIFT = {}, POPH = {}, TRANS = {}, PROFILES = [], GROUPS = [], ITEM = {}, META = {};
   var room = "produce", sel = null, view = null, expanded = false, cart = {}, hist = {}, orders = 0, profileIdx = 0;
   var WALLS = { fresh: ["#DFF1E3", "#A8D5B3"], shelf: ["#F6E7CF", "#E2BF8E"], cold: ["#DDEFF7", "#A9D3E6"], home: ["#EDE4F5", "#C9B3E3"] };
 
@@ -24,19 +23,20 @@
   function count() { var n = 0; for (var k in cart) n += cart[k]; return n; }
   function cartLocs() { var c = {}; for (var id in cart) c[ITEM[id].dept] = (c[ITEM[id].dept] || 0) + cart[id]; return c; }
 
-  /* ---- scoring: the prototype's ranked() on real tables --------------------------------- */
+  /* ---- scoring: variant 4c on hazard tables ------------------------------------------ */
   function ranked() {
-    var cl = cartLocs(), tot = count(), hmax = 1;
-    KEYS.forEach(function (k) { hmax = Math.max(hmax, hist[k] || 0); });
-    return KEYS.filter(function (L) { return L !== room && !DEP[L].norec; }).map(function (L) {
-      var sc = 0, topC = null, topV = 0;
-      for (var c in cl) { if (c === L) continue; var t = (cl[c] / tot) * Math.log(LIFT[c][L]); sc += t; if (t > topV) { topV = t; topC = c; } }
-      var sr = 0.5 * Math.log(ROOM_TERM === "directed" ? DLIFT[room][L] : LIFT[room][L]), sh = 0.6 * Math.log(1 + (hist[L] || 0)) / Math.log(1 + hmax);
-      var o = { to: L, s: sc + sr + sh - (cl[L] ? 1 : 0), sc: sc, sr: sr, sh: sh, topC: topC };
-      if (topC && sc >= sh && sc >= sr) { o.tag = "к корзине"; o.why = "В корзине есть «" + DEP[topC].ru.toLowerCase() + "», вместе с этим отделом берут в " + f1(LIFT[topC][L]) + " раза чаще"; }
-      else if (sh >= sr && (hist[L] || 0) > 0) { o.tag = "часто берёте"; o.why = "Был в " + hist[L] + " из " + orders + " ваших заказов"; }
-      else if (ROOM_TERM === "directed") { o.tag = "рядом"; o.why = "После отдела «" + DEP[room].ru + "» сюда идут следующим в " + pct(TRANS[room][L]) + " случаев, это в " + f1(DLIFT[room][L]) + " раза чаще обычного"; }
-      else { o.tag = "рядом"; o.why = "С отделом «" + DEP[room].ru + "» берут в " + f1(LIFT[room][L]) + " раза чаще, после него сюда идут в " + pct(TRANS[room][L]) + " случаев"; }
+    var cl = cartLocs(), tot = count();
+    return KEYS.filter(function (L) { return L !== room && !DEP[L].norec && !cl[L]; }).map(function (L) {
+      var sb = 0, topC = null, topV = 0;
+      for (var c in cl) { if (c === L) continue; var t = (cl[c] / tot) * Math.log(BLIFT[c][L]); sb += t; if (t > topV) { topV = t; topC = c; } }
+      sb *= W_BASKET;
+      var sr = W_ROOM * Math.log(MLIFT[room][L]);
+      var share = orders ? (hist[L] || 0) / orders : 0, sh = W_HIST * share;
+      var o = { to: L, s: Math.log(POPH[L]) + sb + sr + sh, sb: sb, sr: sr, sh: sh, topC: topC };
+      if (topC && sb >= sh && sb >= sr && sb > 0) { o.tag = "к корзине"; o.why = "В корзине есть «" + DEP[topC].ru.toLowerCase() + "», после него сюда идут в " + f1(BLIFT[topC][L]) + " раза чаще обычного"; }
+      else if (sh >= sr && share > 0) { o.tag = "часто берёте"; o.why = "Был в " + hist[L] + " из " + orders + " ваших заказов"; }
+      else if (sr > 0) { o.tag = "рядом"; o.why = "После отдела «" + DEP[room].ru + "» сюда идут в " + f1(MLIFT[room][L]) + " раза чаще обычного"; }
+      else { o.tag = "популярное"; o.why = "Частый следующий отдел: " + pct(POPH[L]) + " переходов, когда его ещё нет в корзине"; }
       return o;
     }).sort(function (a, b) { return b.s - a.s; });
   }
@@ -79,8 +79,10 @@
     });
     $("transTable").innerHTML = t + "</table>";
     $("howto").innerHTML = "<p>Все числа посчитаны по " + META.n_orders.toLocaleString("ru-RU") + " реальным заказам " + META.n_users.toLocaleString("ru-RU") + " покупателей Instacart (Kaggle), отделы <code>missing</code> и <code>other</code> исключены. " +
-      "Lift(A,B) = P(A и B в одном заказе) / (P(A)·P(B)). Переходы построены по порядку добавления товаров в корзину (<code>add_to_cart_order</code>): для каждого товара смотрим, какой отдел, которого ещё нет в корзине, появится следующим.</p>" +
-      "<p>Отделы, куда идут целенаправленно (сейчас это «Для животных»), в подсказки не попадают, но доступны через «Все отделы». Оценка отдела для стрелки и карты: сумма по отделам корзины (доля товаров × ln lift) + 0,5·ln lift к текущему отделу + 0,6·нормированная логарифмическая частота отдела в ваших прошлых заказах − 1, если отдел уже в корзине. Это эвристика из прототипа; в офлайн-замерах на тех же данных CatBoost и персональная популярность точнее, таблица метрик в README репозитория.</p>";
+      "Lift(A,B) = P(A и B в одном заказе) / (P(A)·P(B)), по нему строятся плашки «С этим берут». Стрелка и карта считаются по порядку добавления товаров в корзину (<code>add_to_cart_order</code>): для каждого товара смотрим, какой отдел, которого ещё нет в корзине, появится следующим. " +
+      "Важная деталь: вероятности считаются только среди позиций, где отдел L ещё не лежит в корзине, иначе овощи и молочное, которые кладут первыми, выглядели бы «непопулярными» для следующего шага.</p>" +
+      "<p>Оценка отдела L: ln P(L следующий | L ещё нет) + сумма по отделам корзины (доля товаров × ln, во сколько раз чаще идут в L, если этот отдел уже в корзине) + 0,5·ln того же для текущего отдела + 5·доля ваших прошлых заказов с L. Отделы из корзины и «Для животных» не предлагаются. " +
+      "На тесте эта формула даёт hit@3 = 0,619 против 0,627 у CatBoost и 0,506 у простой популярности, таблица в README репозитория.</p>";
   }
 
   /* ---- sheets ------------------------------------------------------------------------ */
@@ -164,8 +166,11 @@
       d.aisles.forEach(function (a) { a.products.forEach(function (p, j) { ITEM[a.id + "_" + j] = { name: p, aisle: a.ru, dept: d.key }; }); });
     });
     KEYS.forEach(function (a, i) {
-      LIFT[a] = {}; TRANS[a] = {}; DLIFT[a] = {};
-      KEYS.forEach(function (b, j) { LIFT[a][b] = Math.max(0.05, lift.lift[i][j]); TRANS[a][b] = trans.p_next_given_current[i][j]; DLIFT[a][b] = Math.max(0.05, trans.directed_lift[i][j]); });
+      LIFT[a] = {}; TRANS[a] = {}; BLIFT[a] = {}; MLIFT[a] = {}; POPH[a] = Math.max(1e-4, trans.pop_hazard[i]);
+      KEYS.forEach(function (b, j) {
+        LIFT[a][b] = Math.max(0.05, lift.lift[i][j]); TRANS[a][b] = trans.p_next_given_current[i][j];
+        BLIFT[a][b] = Math.max(0.05, trans.basket_lift[i][j]); MLIFT[a][b] = Math.max(0.05, trans.markov_lift[i][j]);
+      });
     });
     sheet = $("sheet"); inn = $("sheetIn");
     $("profileSel").innerHTML = PROFILES.map(function (p, i) { return '<option value="' + i + '">' + esc(p.title) + (p.share === null ? "" : " · " + pct(p.share)) + "</option>"; }).join("");

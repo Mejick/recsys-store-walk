@@ -53,6 +53,58 @@ def next_new_department(items: pd.DataFrame) -> tuple[np.ndarray, np.ndarray]:
     return target, is_new
 
 
+def basket_prefix_counts(dcat: np.ndarray, starts: np.ndarray, lengths: np.ndarray, n_dep: int) -> np.ndarray:
+    """Row i -> counts of each department among items 1..i of the same order (inclusive)."""
+    onehot = np.zeros((len(dcat), n_dep), dtype=np.int32)
+    onehot[np.arange(len(dcat)), dcat] = 1
+    cs = onehot.cumsum(axis=0)
+    prev = cs[np.maximum(starts - 1, 0)]
+    prev[starts == 0] = 0
+    return cs - np.repeat(prev, lengths, axis=0)
+
+
+def hazard_tables(dcat: np.ndarray, target_cat: np.ndarray, starts: np.ndarray, lengths: np.ndarray,
+                  n_dep: int, chunk_orders: int = 300_000) -> dict:
+    """Conditional next-department tables that account for departments already in the basket.
+
+    A plain P(next = L | c in basket) is misleading: when dairy is in the basket, produce is usually
+    there too, so produce can never be "next" and looks unpopular. Normalising by the positions where
+    L is still absent fixes this (a hazard-style conditional):
+      pop_hazard[L]       = P(next = L | L not in basket)
+      basket_hazard[c][L] = P(next = L | c in basket, L not in basket)
+      markov_hazard[c][L] = P(next = L | last = c, L not in basket)
+    Computed over order-aligned chunks to keep memory flat.
+    """
+    cnt_b = np.zeros((n_dep, n_dep)); den_b = np.zeros((n_dep, n_dep))
+    cnt_m = np.zeros((n_dep, n_dep)); den_m = np.zeros((n_dep, n_dep))
+    cnt_p = np.zeros(n_dep); den_p = np.zeros(n_dep)
+    for o0 in range(0, len(starts), chunk_orders):
+        o1 = min(o0 + chunk_orders, len(starts))
+        r0, r1 = starts[o0], starts[o1 - 1] + lengths[o1 - 1]
+        st = starts[o0:o1] - r0
+        B = basket_prefix_counts(dcat[r0:r1], st, lengths[o0:o1], n_dep) > 0
+        t = target_cat[r0:r1]
+        ok = t >= 0
+        Bp = B[ok].astype(np.float64)
+        absent = 1.0 - Bp
+        Y = np.zeros((ok.sum(), n_dep)); Y[np.arange(ok.sum()), t[ok]] = 1.0
+        L1 = np.zeros((ok.sum(), n_dep)); L1[np.arange(ok.sum()), dcat[r0:r1][ok]] = 1.0
+        cnt_b += Bp.T @ Y; den_b += Bp.T @ absent
+        cnt_m += L1.T @ Y; den_m += L1.T @ absent
+        cnt_p += Y.sum(0); den_p += absent.sum(0)
+    pop_h = cnt_p / np.maximum(den_p, 1)
+    basket_h = cnt_b / np.maximum(den_b, 1)
+    markov_h = cnt_m / np.maximum(den_m, 1)
+    with np.errstate(divide="ignore", invalid="ignore"):
+        basket_lift = np.where(pop_h > 0, basket_h / pop_h, 0.0)
+        markov_lift = np.where(pop_h > 0, markov_h / pop_h, 0.0)
+    np.fill_diagonal(basket_lift, 0.0)
+    return {"pop_hazard": pop_h.round(5).tolist(), "basket_hazard": basket_h.round(5).tolist(),
+            "markov_hazard": markov_h.round(5).tolist(), "basket_lift": basket_lift.round(4).tolist(),
+            "markov_lift": markov_lift.round(4).tolist(),
+            "basket_support": den_b.sum(1).astype(int).tolist()}
+
+
 def run(cfg: Config) -> None:
     t0 = time.time()
     dims = load_dims(cfg)
@@ -122,10 +174,14 @@ def run(cfg: Config) -> None:
     p_next = trans_counts.sum(0) / trans_counts.sum()
     dlift = trans / p_next
     stats["share_items_with_next_new_department"] = float(has_t.mean())
+    # hazard-style conditionals that account for what is already in the basket (used by the demo)
+    tcat_all = np.full(len(dcat), -1, dtype=np.int64)
+    tcat_all[has_t] = nxt
+    hz = hazard_tables(dcat, tcat_all, starts, lengths, len(dep_ids))
     json.dump({"departments": dep_names, "department_ids": dep_ids.tolist(),
                "counts": trans_counts.tolist(), "p_next_given_current": np.round(trans, 5).tolist(),
                "p_next_marginal": np.round(p_next, 5).tolist(),
-               "directed_lift": np.round(dlift, 4).tolist()},
+               "directed_lift": np.round(dlift, 4).tolist(), **hz},
               open(art / "transitions_department.json", "w"), indent=0)
 
     # ---- where directed and symmetric disagree ---------------------------------------

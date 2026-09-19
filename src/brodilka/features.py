@@ -20,7 +20,13 @@ import numpy as np
 import pandas as pd
 
 from brodilka.config import Config, parse_args
-from brodilka.eda import cooccurrence, lift_from_cooc, next_new_department
+from brodilka.eda import (
+    basket_prefix_counts,
+    cooccurrence,
+    hazard_tables,
+    lift_from_cooc,
+    next_new_department,
+)
 from brodilka.loaders import load_dims, load_items, order_boundaries
 
 USER_FEATS = ["u_n_orders", "u_reorder_rate", "u_avg_basket", "u_days_mean"]
@@ -42,16 +48,6 @@ def split_orders(orders: pd.DataFrame, cfg: Config) -> pd.Series:
     n_test, n_val = int(cfg["split"]["n_test"]), int(cfg["split"]["n_val"])
     split = np.where(rank_desc <= n_test, "test", np.where(rank_desc <= n_test + n_val, "val", "train"))
     return pd.Series(split, index=orders["order_id"].to_numpy(), name="split")
-
-
-def basket_prefix_counts(dcat: np.ndarray, starts: np.ndarray, lengths: np.ndarray, n_dep: int) -> np.ndarray:
-    """Row i -> counts of each department among items 1..i of the same order (inclusive)."""
-    onehot = np.zeros((len(dcat), n_dep), dtype=np.int32)
-    onehot[np.arange(len(dcat)), dcat] = 1
-    cs = onehot.cumsum(axis=0)
-    prev = cs[np.maximum(starts - 1, 0)]
-    prev[starts == 0] = 0
-    return cs - np.repeat(prev, lengths, axis=0)
 
 
 def user_history(items: pd.DataFrame, orders: pd.DataFrame, dep_pos: dict) -> pd.DataFrame:
@@ -97,8 +93,11 @@ def train_tables(items_tr: pd.DataFrame, dep_pos: dict, cfg: Config) -> dict:
     np.add.at(counts, (dcat[ok], tcat), 1)
     trans = counts / np.maximum(counts.sum(1, keepdims=True), 1)
     pop = counts.sum(0) / counts.sum()
+    tcat_all = np.full(len(dcat), -1, dtype=np.int64)
+    tcat_all[ok] = tcat
+    hz = hazard_tables(dcat, tcat_all, starts, lengths, n_dep)
     return {"n_orders": len(starts), "lift": lift.round(5).tolist(), "p_order": p_order.round(5).tolist(),
-            "transitions": trans.round(5).tolist(), "pop_next": pop.round(5).tolist()}
+            "transitions": trans.round(5).tolist(), "pop_next": pop.round(5).tolist(), **hz}
 
 
 def run(cfg: Config) -> None:

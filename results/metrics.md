@@ -12,6 +12,7 @@
 | 3. Markov chain (order 1) | 0.2465 | 0.5153 | 0.4399 |
 | 4. Prototype heuristic | 0.1858 | 0.4670 | 0.3909 |
 | 4b. Heuristic with directed lift | 0.2446 | 0.5343 | 0.4452 |
+| 4c. Demo formula (hazard tables + history) | 0.3107 | 0.6125 | 0.5073 |
 | CatBoost MultiClass | 0.3164 | 0.6224 | 0.5139 |
 | CatBoost YetiRank (subsample) | 0.2577 | 0.5244 | 0.4484 |
 
@@ -24,6 +25,7 @@
 | 3. Markov chain (order 1) | 0.5581 | 0.5161 | 0.5002 | 0.5063 | 0.5186 | 0.2583 |
 | 4. Prototype heuristic | 0.4578 | 0.4606 | 0.4740 | 0.4540 | 0.4719 | 0.4848 |
 | 4b. Heuristic with directed lift | 0.5525 | 0.5435 | 0.5226 | 0.5087 | 0.5439 | 0.4538 |
+| 4c. Demo formula (hazard tables + history) | 0.6628 | 0.6242 | 0.5885 | 0.5821 | 0.6238 | 0.4485 |
 | CatBoost MultiClass | 0.6757 | 0.6347 | 0.5969 | 0.5950 | 0.6326 | 0.4732 |
 | CatBoost YetiRank (subsample) | 0.5737 | 0.5285 | 0.5051 | 0.5127 | 0.5287 | 0.2680 |
 
@@ -36,6 +38,7 @@
 | 3. Markov chain (order 1) | 0.2489 | 0.5180 | 0.4420 |
 | 4. Prototype heuristic | 0.1862 | 0.4719 | 0.3934 |
 | 4b. Heuristic with directed lift | 0.2481 | 0.5421 | 0.4499 |
+| 4c. Demo formula (hazard tables + history) | 0.3143 | 0.6188 | 0.5115 |
 | CatBoost MultiClass | 0.3202 | 0.6274 | 0.5177 |
 | CatBoost YetiRank (subsample) | 0.2606 | 0.5278 | 0.4506 |
 
@@ -48,6 +51,7 @@
 | 3. Markov chain (order 1) | 0.5564 | 0.5165 | 0.5061 | 0.5068 | 0.5208 | 0.2621 |
 | 4. Prototype heuristic | 0.4581 | 0.4662 | 0.4798 | 0.4664 | 0.4732 | 0.4920 |
 | 4b. Heuristic with directed lift | 0.5544 | 0.5503 | 0.5332 | 0.5289 | 0.5453 | 0.4614 |
+| 4c. Demo formula (hazard tables + history) | 0.6676 | 0.6303 | 0.5957 | 0.5966 | 0.6243 | 0.4532 |
 | CatBoost MultiClass | 0.6777 | 0.6411 | 0.6026 | 0.6019 | 0.6337 | 0.4802 |
 | CatBoost YetiRank (subsample) | 0.5744 | 0.5327 | 0.5093 | 0.5133 | 0.5313 | 0.2732 |
 
@@ -86,6 +90,7 @@
 - 3. Markov chain (order 1): snacks, pantry, frozen
 - 4. Prototype heuristic: babies, pantry, bakery
 - 4b. Heuristic with directed lift: babies, pantry, canned goods
+- 4c. Demo formula (hazard tables + history): pantry, frozen, bakery
 - CatBoost MultiClass: babies, bakery, frozen
 
 **Пример 2.** Корзина после 2 позиций: produce×1, dairy eggs×1. Последний отдел: dairy eggs. История (3 заказов), чаще всего: produce (3/3), dairy eggs (3/3), beverages (3/3). Реально следующий: **beverages**.
@@ -94,6 +99,7 @@
 - 3. Markov chain (order 1): snacks, beverages, frozen
 - 4. Prototype heuristic: beverages, snacks, personal care
 - 4b. Heuristic with directed lift: beverages, snacks, bakery
+- 4c. Demo formula (hazard tables + history): beverages, snacks, household
 - CatBoost MultiClass: beverages, snacks, household
 
 **Пример 3.** Корзина после 5 позиций: bakery×1, produce×2, dairy eggs×1, deli×1. Последний отдел: dairy eggs. История (14 заказов), чаще всего: produce (12/14), deli (11/14), dairy eggs (9/14). Реально следующий: **beverages**.
@@ -102,6 +108,7 @@
 - 3. Markov chain (order 1): snacks, beverages, frozen
 - 4. Prototype heuristic: meat seafood, dry goods pasta, frozen
 - 4b. Heuristic with directed lift: meat seafood, beverages, frozen
+- 4c. Demo formula (hazard tables + history): beverages, frozen, meat seafood
 - CatBoost MultiClass: beverages, meat seafood, frozen
 
 **Пример 4.** Корзина после 6 позиций: produce×2, pets×1, personal care×1, dairy eggs×1, deli×1. Последний отдел: produce. История (20 заказов), чаще всего: beverages (16/20), dairy eggs (13/20), produce (12/20). Реально следующий: **beverages**.
@@ -110,6 +117,7 @@
 - 3. Markov chain (order 1): snacks, pantry, frozen
 - 4. Prototype heuristic: beverages, snacks, bakery
 - 4b. Heuristic with directed lift: beverages, snacks, bakery
+- 4c. Demo formula (hazard tables + history): beverages, snacks, frozen
 - CatBoost MultiClass: beverages, snacks, frozen
 
 **Пример 5.** Корзина после 3 позиций: bakery×1, dry goods pasta×1, dairy eggs×1. Последний отдел: dairy eggs. История (88 заказов), чаще всего: produce (77/88), dairy eggs (72/88), bakery (39/88). Реально следующий: **snacks**.
@@ -118,4 +126,5 @@
 - 3. Markov chain (order 1): produce, snacks, beverages
 - 4. Prototype heuristic: pantry, frozen, produce
 - 4b. Heuristic with directed lift: produce, frozen, pantry
+- 4c. Demo formula (hazard tables + history): produce, snacks, pantry
 - CatBoost MultiClass: produce, frozen, pantry

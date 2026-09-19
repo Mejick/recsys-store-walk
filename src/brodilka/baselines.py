@@ -79,10 +79,32 @@ def score_heuristic_v2(ex: pd.DataFrame, tables: dict) -> np.ndarray:
     return sc + sr + sh - (B > 0)
 
 
+# weights of the demo formula, picked on val (see results/metrics.md)
+DEMO_W_BASKET, DEMO_W_ROOM, DEMO_W_HIST = 1.0, 0.5, 5.0
+
+
+def score_heuristic_v3(ex: pd.DataFrame, tables: dict) -> np.ndarray:
+    """The formula the demo runs in the browser. Naive-Bayes style on hazard tables:
+    ln P(L | L absent) + sum_c share_c * ln basket_lift[c][L] + 0.5 * ln markov_lift[last][L]
+    + 5 * (share of the user's past orders containing L); basket departments are masked later."""
+    pop_h = np.asarray(tables["pop_hazard"], dtype=np.float32)
+    blift = np.log(np.maximum(np.asarray(tables["basket_lift"], dtype=np.float32), 0.05))
+    np.fill_diagonal(blift, 0.0)
+    mlift = np.log(np.maximum(np.asarray(tables["markov_lift"], dtype=np.float32), 0.05))
+    B = basket_counts(ex)
+    tot = B.sum(1, keepdims=True)
+    H = hist_counts(ex)
+    n = ex["u_n_orders"].to_numpy(dtype=np.float32)[:, None]
+    share = np.divide(H, n, out=np.zeros_like(H), where=n > 0)
+    return (np.log(np.maximum(pop_h, 1e-6)) + DEMO_W_BASKET * ((B / tot) @ blift)
+            + DEMO_W_ROOM * mlift[ex["last_dept"].to_numpy()] + DEMO_W_HIST * share)
+
+
 BASELINES = {
     "popularity": score_popularity,
     "personal": score_personal,
     "markov": score_markov,
     "heuristic": score_heuristic,
     "heuristic_v2": score_heuristic_v2,
+    "heuristic_v3": score_heuristic_v3,
 }

@@ -21,6 +21,7 @@ METHOD_LABEL = {
     "markov": "3. Markov chain (order 1)",
     "heuristic": "4. Prototype heuristic",
     "heuristic_v2": "4b. Heuristic with directed lift",
+    "heuristic_v3": "4c. Demo formula (hazard tables + history)",
     "catboost_multiclass": "CatBoost MultiClass",
     "catboost_yetirank": "CatBoost YetiRank (subsample)",
 }
@@ -63,7 +64,7 @@ def worked_examples(ex: pd.DataFrame, S: dict[str, np.ndarray], deps: list[str],
                  f"Последний отдел: {deps[int(row['last_dept'])]}. "
                  f"История ({int(row['u_n_orders'])} заказов), чаще всего: {hist}. "
                  f"Реально следующий: **{deps[int(y[i])]}**."]
-        for m in ("popularity", "personal", "markov", "heuristic", "heuristic_v2", "catboost_multiclass"):
+        for m in ("popularity", "personal", "markov", "heuristic", "heuristic_v2", "heuristic_v3", "catboost_multiclass"):
             top = np.argsort(-S[m][i])[:3]
             lines.append(f"- {METHOD_LABEL[m]}: " + ", ".join(deps[j] for j in top))
         parts.append("\n".join(lines))

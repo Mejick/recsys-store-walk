@@ -3,7 +3,8 @@ import pandas as pd
 
 from brodilka.baselines import mask_basket, score_heuristic
 from brodilka.config import load_config
-from brodilka.features import basket_prefix_counts, split_orders, user_history
+from brodilka.eda import basket_prefix_counts
+from brodilka.features import split_orders, user_history
 from brodilka.metrics import rank_of_target, summarize
 
 
