@@ -1,0 +1,358 @@
+[
+ {
+  "feature": "b_14",
+  "importance": 5.178
+ },
+ {
+  "feature": "e_14",
+  "importance": 4.9167
+ },
+ {
+  "feature": "e_5",
+  "importance": 4.9066
+ },
+ {
+  "feature": "e_2",
+  "importance": 4.7884
+ },
+ {
+  "feature": "b_2",
+  "importance": 4.3483
+ },
+ {
+  "feature": "u_reorder_rate",
+  "importance": 3.8866
+ },
+ {
+  "feature": "e_17",
+  "importance": 3.6593
+ },
+ {
+  "feature": "e_0",
+  "importance": 3.1637
+ },
+ {
+  "feature": "e_1",
+  "importance": 2.9388
+ },
+ {
+  "feature": "e_18",
+  "importance": 2.3049
+ },
+ {
+  "feature": "e_10",
+  "importance": 2.2784
+ },
+ {
+  "feature": "e_11",
+  "importance": 2.0191
+ },
+ {
+  "feature": "e_13",
+  "importance": 1.9261
+ },
+ {
+  "feature": "last_aisle",
+  "importance": 1.8966
+ },
+ {
+  "feature": "s_14",
+  "importance": 1.8965
+ },
+ {
+  "feature": "e_7",
+  "importance": 1.8216
+ },
+ {
+  "feature": "e_16",
+  "importance": 1.7943
+ },
+ {
+  "feature": "e_12",
+  "importance": 1.7849
+ },
+ {
+  "feature": "e_15",
+  "importance": 1.7145
+ },
+ {
+  "feature": "s_15",
+  "importance": 1.6954
+ },
+ {
+  "feature": "s_5",
+  "importance": 1.6744
+ },
+ {
+  "feature": "s_2",
+  "importance": 1.6309
+ },
+ {
+  "feature": "s_3",
+  "importance": 1.5835
+ },
+ {
+  "feature": "s_1",
+  "importance": 1.5009
+ },
+ {
+  "feature": "s_13",
+  "importance": 1.4577
+ },
+ {
+  "feature": "s_0",
+  "importance": 1.4533
+ },
+ {
+  "feature": "s_17",
+  "importance": 1.4267
+ },
+ {
+  "feature": "s_18",
+  "importance": 1.4173
+ },
+ {
+  "feature": "s_12",
+  "importance": 1.4075
+ },
+ {
+  "feature": "s_9",
+  "importance": 1.298
+ },
+ {
+  "feature": "s_7",
+  "importance": 1.2625
+ },
+ {
+  "feature": "s_6",
+  "importance": 1.2502
+ },
+ {
+  "feature": "days_since_prior_order",
+  "importance": 1.2268
+ },
+ {
+  "feature": "s_16",
+  "importance": 1.2145
+ },
+ {
+  "feature": "s_11",
+  "importance": 1.2018
+ },
+ {
+  "feature": "s_8",
+  "importance": 1.1411
+ },
+ {
+  "feature": "s_10",
+  "importance": 1.1228
+ },
+ {
+  "feature": "e_6",
+  "importance": 1.114
+ },
+ {
+  "feature": "s_4",
+  "importance": 0.9992
+ },
+ {
+  "feature": "e_9",
+  "importance": 0.968
+ },
+ {
+  "feature": "e_8",
+  "importance": 0.9595
+ },
+ {
+  "feature": "order_hour_of_day",
+  "importance": 0.9499
+ },
+ {
+  "feature": "e_4",
+  "importance": 0.9239
+ },
+ {
+  "feature": "b_17",
+  "importance": 0.9086
+ },
+ {
+  "feature": "e_3",
+  "importance": 0.89
+ },
+ {
+  "feature": "b_11",
+  "importance": 0.8303
+ },
+ {
+  "feature": "u_n_orders",
+  "importance": 0.8139
+ },
+ {
+  "feature": "order_number",
+  "importance": 0.8106
+ },
+ {
+  "feature": "b_5",
+  "importance": 0.7255
+ },
+ {
+  "feature": "order_dow",
+  "importance": 0.6731
+ },
+ {
+  "feature": "b_0",
+  "importance": 0.6544
+ },
+ {
+  "feature": "u_avg_basket",
+  "importance": 0.6496
+ },
+ {
+  "feature": "first_dept",
+  "importance": 0.6438
+ },
+ {
+  "feature": "k",
+  "importance": 0.6159
+ },
+ {
+  "feature": "u_days_mean",
+  "importance": 0.5836
+ },
+ {
+  "feature": "n_dep_basket",
+  "importance": 0.3585
+ },
+ {
+  "feature": "b_1",
+  "importance": 0.3116
+ },
+ {
+  "feature": "b_18",
+  "importance": 0.3111
+ },
+ {
+  "feature": "b_13",
+  "importance": 0.2967
+ },
+ {
+  "feature": "b_15",
+  "importance": 0.2008
+ },
+ {
+  "feature": "m_14",
+  "importance": 0.1623
+ },
+ {
+  "feature": "b_7",
+  "importance": 0.1534
+ },
+ {
+  "feature": "m_5",
+  "importance": 0.1369
+ },
+ {
+  "feature": "b_10",
+  "importance": 0.1291
+ },
+ {
+  "feature": "b_9",
+  "importance": 0.1158
+ },
+ {
+  "feature": "m_9",
+  "importance": 0.1033
+ },
+ {
+  "feature": "b_12",
+  "importance": 0.0793
+ },
+ {
+  "feature": "m_18",
+  "importance": 0.0786
+ },
+ {
+  "feature": "m_12",
+  "importance": 0.0782
+ },
+ {
+  "feature": "m_11",
+  "importance": 0.064
+ },
+ {
+  "feature": "m_13",
+  "importance": 0.0633
+ },
+ {
+  "feature": "m_1",
+  "importance": 0.0591
+ },
+ {
+  "feature": "b_3",
+  "importance": 0.0475
+ },
+ {
+  "feature": "m_4",
+  "importance": 0.0439
+ },
+ {
+  "feature": "m_3",
+  "importance": 0.0399
+ },
+ {
+  "feature": "m_15",
+  "importance": 0.038
+ },
+ {
+  "feature": "m_6",
+  "importance": 0.0329
+ },
+ {
+  "feature": "m_0",
+  "importance": 0.0258
+ },
+ {
+  "feature": "b_16",
+  "importance": 0.0235
+ },
+ {
+  "feature": "m_7",
+  "importance": 0.0232
+ },
+ {
+  "feature": "b_6",
+  "importance": 0.0215
+ },
+ {
+  "feature": "b_4",
+  "importance": 0.0189
+ },
+ {
+  "feature": "m_8",
+  "importance": 0.0186
+ },
+ {
+  "feature": "m_17",
+  "importance": 0.0182
+ },
+ {
+  "feature": "m_2",
+  "importance": 0.0166
+ },
+ {
+  "feature": "m_10",
+  "importance": 0.0157
+ },
+ {
+  "feature": "m_16",
+  "importance": 0.0087
+ },
+ {
+  "feature": "b_8",
+  "importance": 0.003
+ },
+ {
+  "feature": "last_dept",
+  "importance": 0.0
+ }
+]

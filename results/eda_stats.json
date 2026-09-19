@@ -1,0 +1,456 @@
+{
+ "n_orders": 3345395,
+ "n_users": 206209,
+ "n_items": 33703624,
+ "basket_size": {
+  "mean": 10.074632143588426,
+  "median": 8.0,
+  "p90": 20.0,
+  "hist": {
+   "1": 164359,
+   "2": 195324,
+   "3": 216235,
+   "4": 231149,
+   "5": 238000,
+   "6": 236990,
+   "7": 228562,
+   "8": 211461,
+   "9": 191443,
+   "10": 172060,
+   "11": 153185,
+   "12": 136657,
+   "13": 121628,
+   "14": 107798,
+   "15": 95014,
+   "16": 84533,
+   "17": 74262,
+   "18": 64949,
+   "19": 56917,
+   "20": 50040,
+   "21": 43412,
+   "22": 37791,
+   "23": 32939,
+   "24": 28133,
+   "25": 24465,
+   "26": 21109,
+   "27": 18167,
+   "28": 15590,
+   "29": 13578,
+   "30": 79645
+  }
+ },
+ "departments_per_order": {
+  "mean": 4.711969139668111,
+  "hist": {
+   "1": 302527,
+   "2": 414415,
+   "3": 490532,
+   "4": 509940,
+   "5": 466303,
+   "6": 382316,
+   "7": 290201,
+   "8": 204584,
+   "9": 133522,
+   "10": 79506,
+   "11": 42040,
+   "12": 19137,
+   "13": 7526,
+   "14": 2269,
+   "15": 492,
+   "16": 76,
+   "17": 9
+  }
+ },
+ "share_single_department_orders": 0.09043087587564398,
+ "department_share_of_orders": {
+  "frozen": 0.36829403042793274,
+  "bakery": 0.27440106868743896,
+  "produce": 0.7491632699966431,
+  "alcohol": 0.026243239641189575,
+  "international": 0.06912577152252197,
+  "beverages": 0.454007089138031,
+  "pets": 0.018536226823925972,
+  "dry goods pasta": 0.18644674122333527,
+  "bulk": 0.010499507188796997,
+  "personal care": 0.09967821091413498,
+  "meat seafood": 0.17905718088150024,
+  "pantry": 0.3483866751194,
+  "breakfast": 0.16352836787700653,
+  "canned goods": 0.21244755387306213,
+  "dairy eggs": 0.6769717931747437,
+  "household": 0.1471954733133316,
+  "babies": 0.05502310022711754,
+  "snacks": 0.4330576956272125,
+  "deli": 0.2399062067270279
+ },
+ "aisle_pairs_kept_share": 0.5642791551882461,
+ "share_items_with_next_new_department": 0.7385456531321379,
+ "top_asymmetric_pairs": [
+  {
+   "a": "bulk",
+   "b": "pets",
+   "lift_sym": 0.4620000123977661,
+   "dlift_a_to_b": 0.51,
+   "dlift_b_to_a": 0.172,
+   "p_next_b_given_a": 0.002,
+   "asym": 1.088,
+   "gap_vs_sym": 0.098
+  },
+  {
+   "a": "bulk",
+   "b": "alcohol",
+   "lift_sym": 0.1120000034570694,
+   "dlift_a_to_b": 0.165,
+   "dlift_b_to_a": 0.064,
+   "p_next_b_given_a": 0.001,
+   "asym": 0.951,
+   "gap_vs_sym": 0.392
+  },
+  {
+   "a": "alcohol",
+   "b": "produce",
+   "lift_sym": 0.6729999780654907,
+   "dlift_a_to_b": 1.327,
+   "dlift_b_to_a": 0.628,
+   "p_next_b_given_a": 0.123,
+   "asym": 0.748,
+   "gap_vs_sym": 0.679
+  },
+  {
+   "a": "dry goods pasta",
+   "b": "alcohol",
+   "lift_sym": 0.8299999833106995,
+   "dlift_a_to_b": 0.959,
+   "dlift_b_to_a": 0.527,
+   "p_next_b_given_a": 0.004,
+   "asym": 0.598,
+   "gap_vs_sym": 0.144
+  },
+  {
+   "a": "canned goods",
+   "b": "alcohol",
+   "lift_sym": 0.8769999742507935,
+   "dlift_a_to_b": 1.033,
+   "dlift_b_to_a": 0.57,
+   "p_next_b_given_a": 0.004,
+   "asym": 0.595,
+   "gap_vs_sym": 0.163
+  },
+  {
+   "a": "international",
+   "b": "alcohol",
+   "lift_sym": 0.8690000176429749,
+   "dlift_a_to_b": 1.03,
+   "dlift_b_to_a": 0.589,
+   "p_next_b_given_a": 0.004,
+   "asym": 0.558,
+   "gap_vs_sym": 0.169
+  },
+  {
+   "a": "pets",
+   "b": "produce",
+   "lift_sym": 0.8650000095367432,
+   "dlift_a_to_b": 1.085,
+   "dlift_b_to_a": 0.633,
+   "p_next_b_given_a": 0.101,
+   "asym": 0.538,
+   "gap_vs_sym": 0.227
+  },
+  {
+   "a": "bulk",
+   "b": "personal care",
+   "lift_sym": 0.9710000157356262,
+   "dlift_a_to_b": 0.915,
+   "dlift_b_to_a": 0.545,
+   "p_next_b_given_a": 0.022,
+   "asym": 0.518,
+   "gap_vs_sym": -0.059
+  },
+  {
+   "a": "pantry",
+   "b": "alcohol",
+   "lift_sym": 0.8840000033378601,
+   "dlift_a_to_b": 1.232,
+   "dlift_b_to_a": 0.758,
+   "p_next_b_given_a": 0.005,
+   "asym": 0.485,
+   "gap_vs_sym": 0.332
+  },
+  {
+   "a": "breakfast",
+   "b": "alcohol",
+   "lift_sym": 0.6669999957084656,
+   "dlift_a_to_b": 0.815,
+   "dlift_b_to_a": 0.505,
+   "p_next_b_given_a": 0.003,
+   "asym": 0.478,
+   "gap_vs_sym": 0.201
+  },
+  {
+   "a": "dry goods pasta",
+   "b": "pets",
+   "lift_sym": 1.2799999713897705,
+   "dlift_a_to_b": 1.062,
+   "dlift_b_to_a": 0.691,
+   "p_next_b_given_a": 0.004,
+   "asym": 0.429,
+   "gap_vs_sym": -0.187
+  },
+  {
+   "a": "bulk",
+   "b": "household",
+   "lift_sym": 0.8029999732971191,
+   "dlift_a_to_b": 0.679,
+   "dlift_b_to_a": 0.445,
+   "p_next_b_given_a": 0.023,
+   "asym": 0.424,
+   "gap_vs_sym": -0.167
+  }
+ ],
+ "top_directed_over_symmetric": [
+  {
+   "a": "alcohol",
+   "b": "beverages",
+   "lift_sym": 1.090000033378601,
+   "dlift_a_to_b": 2.154,
+   "dlift_b_to_a": 1.947,
+   "p_next_b_given_a": 0.182,
+   "asym": 0.101,
+   "gap_vs_sym": 0.681
+  },
+  {
+   "a": "alcohol",
+   "b": "produce",
+   "lift_sym": 0.6729999780654907,
+   "dlift_a_to_b": 1.327,
+   "dlift_b_to_a": 0.628,
+   "p_next_b_given_a": 0.123,
+   "asym": 0.748,
+   "gap_vs_sym": 0.679
+  },
+  {
+   "a": "beverages",
+   "b": "alcohol",
+   "lift_sym": 1.090000033378601,
+   "dlift_a_to_b": 1.947,
+   "dlift_b_to_a": 2.154,
+   "p_next_b_given_a": 0.007,
+   "asym": -0.101,
+   "gap_vs_sym": 0.58
+  },
+  {
+   "a": "beverages",
+   "b": "produce",
+   "lift_sym": 0.9819999933242798,
+   "dlift_a_to_b": 1.626,
+   "dlift_b_to_a": 1.07,
+   "p_next_b_given_a": 0.151,
+   "asym": 0.418,
+   "gap_vs_sym": 0.504
+  },
+  {
+   "a": "dairy eggs",
+   "b": "produce",
+   "lift_sym": 1.0850000381469727,
+   "dlift_a_to_b": 1.784,
+   "dlift_b_to_a": 1.416,
+   "p_next_b_given_a": 0.166,
+   "asym": 0.231,
+   "gap_vs_sym": 0.497
+  },
+  {
+   "a": "household",
+   "b": "personal care",
+   "lift_sym": 2.260999917984009,
+   "dlift_a_to_b": 3.691,
+   "dlift_b_to_a": 3.146,
+   "p_next_b_given_a": 0.09,
+   "asym": 0.16,
+   "gap_vs_sym": 0.49
+  },
+  {
+   "a": "household",
+   "b": "alcohol",
+   "lift_sym": 1.5859999656677246,
+   "dlift_a_to_b": 2.48,
+   "dlift_b_to_a": 2.048,
+   "p_next_b_given_a": 0.009,
+   "asym": 0.191,
+   "gap_vs_sym": 0.447
+  },
+  {
+   "a": "bulk",
+   "b": "alcohol",
+   "lift_sym": 0.1120000034570694,
+   "dlift_a_to_b": 0.165,
+   "dlift_b_to_a": 0.064,
+   "p_next_b_given_a": 0.001,
+   "asym": 0.951,
+   "gap_vs_sym": 0.392
+  },
+  {
+   "a": "personal care",
+   "b": "alcohol",
+   "lift_sym": 1.0190000534057617,
+   "dlift_a_to_b": 1.448,
+   "dlift_b_to_a": 0.992,
+   "p_next_b_given_a": 0.005,
+   "asym": 0.379,
+   "gap_vs_sym": 0.352
+  },
+  {
+   "a": "alcohol",
+   "b": "dairy eggs",
+   "lift_sym": 0.7429999709129333,
+   "dlift_a_to_b": 1.04,
+   "dlift_b_to_a": 0.833,
+   "p_next_b_given_a": 0.115,
+   "asym": 0.221,
+   "gap_vs_sym": 0.336
+  }
+ ],
+ "top_lift_pairs_department": [
+  {
+   "a": "household",
+   "b": "pets",
+   "lift_sym": 2.503000020980835
+  },
+  {
+   "a": "alcohol",
+   "b": "pets",
+   "lift_sym": 2.502000093460083
+  },
+  {
+   "a": "household",
+   "b": "personal care",
+   "lift_sym": 2.260999917984009
+  },
+  {
+   "a": "personal care",
+   "b": "pets",
+   "lift_sym": 2.2260000705718994
+  },
+  {
+   "a": "canned goods",
+   "b": "international",
+   "lift_sym": 1.9210000038146973
+  },
+  {
+   "a": "canned goods",
+   "b": "dry goods pasta",
+   "lift_sym": 1.8420000076293945
+  },
+  {
+   "a": "dry goods pasta",
+   "b": "international",
+   "lift_sym": 1.7920000553131104
+  },
+  {
+   "a": "babies",
+   "b": "dry goods pasta",
+   "lift_sym": 1.649999976158142
+  },
+  {
+   "a": "dry goods pasta",
+   "b": "meat seafood",
+   "lift_sym": 1.6399999856948853
+  },
+  {
+   "a": "alcohol",
+   "b": "household",
+   "lift_sym": 1.5859999656677246
+  }
+ ],
+ "top_lift_pairs_aisle": [
+  {
+   "a": "red wines",
+   "b": "white wines",
+   "lift": 39.072601318359375,
+   "support": 8013
+  },
+  {
+   "a": "white wines",
+   "b": "specialty wines champagnes",
+   "lift": 27.34869956970215,
+   "support": 2202
+  },
+  {
+   "a": "red wines",
+   "b": "specialty wines champagnes",
+   "lift": 26.664199829101562,
+   "support": 2150
+  },
+  {
+   "a": "beers coolers",
+   "b": "red wines",
+   "lift": 22.74220085144043,
+   "support": 5502
+  },
+  {
+   "a": "beers coolers",
+   "b": "white wines",
+   "lift": 19.571300506591797,
+   "support": 4728
+  },
+  {
+   "a": "white wines",
+   "b": "spirits",
+   "lift": 19.070999145507812,
+   "support": 3537
+  },
+  {
+   "a": "beers coolers",
+   "b": "spirits",
+   "lift": 18.515499114990234,
+   "support": 4051
+  },
+  {
+   "a": "red wines",
+   "b": "spirits",
+   "lift": 17.471200942993164,
+   "support": 3245
+  },
+  {
+   "a": "deodorants",
+   "b": "body lotions soap",
+   "lift": 12.246299743652344,
+   "support": 2013
+  },
+  {
+   "a": "hair care",
+   "b": "body lotions soap",
+   "lift": 10.325400352478027,
+   "support": 3065
+  },
+  {
+   "a": "oral hygiene",
+   "b": "deodorants",
+   "lift": 9.466400146484375,
+   "support": 2429
+  },
+  {
+   "a": "baking supplies decor",
+   "b": "doughs gelatins bake mixes",
+   "lift": 7.44290018081665,
+   "support": 4504
+  },
+  {
+   "a": "oral hygiene",
+   "b": "body lotions soap",
+   "lift": 7.1255998611450195,
+   "support": 4649
+  },
+  {
+   "a": "air fresheners candles",
+   "b": "cleaning products",
+   "lift": 7.009300231933594,
+   "support": 3363
+  },
+  {
+   "a": "oral hygiene",
+   "b": "hair care",
+   "lift": 6.830399990081787,
+   "support": 3165
+  }
+ ]
+}
