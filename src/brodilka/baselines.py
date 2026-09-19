@@ -80,13 +80,13 @@ def score_heuristic_v2(ex: pd.DataFrame, tables: dict) -> np.ndarray:
 
 
 # weights of the demo formula, picked on val (see results/metrics.md)
-DEMO_W_BASKET, DEMO_W_ROOM, DEMO_W_HIST = 1.0, 0.5, 5.0
+DEMO_W_BASKET, DEMO_W_ROOM, DEMO_W_HIST = 2.0, 1.0, 4.0
 
 
 def score_heuristic_v3(ex: pd.DataFrame, tables: dict) -> np.ndarray:
     """The formula the demo runs in the browser. Naive-Bayes style on hazard tables:
-    ln P(L | L absent) + sum_c share_c * ln basket_lift[c][L] + 0.5 * ln markov_lift[last][L]
-    + 5 * (share of the user's past orders containing L); basket departments are masked later."""
+    ln P(L | L absent) + 2 * sum_c share_c * ln basket_lift[c][L] + 1.0 * ln markov_lift[last][L]
+    + 4 * (share of the user's past orders containing L); basket departments are masked later."""
     pop_h = np.asarray(tables["pop_hazard"], dtype=np.float32)
     blift = np.log(np.maximum(np.asarray(tables["basket_lift"], dtype=np.float32), 0.05))
     np.fill_diagonal(blift, 0.0)
